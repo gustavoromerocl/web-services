@@ -30,3 +30,7 @@ En un servidor web, este programa se encarga de enviar y recibir datos, estos da
 ### Servidor de archivos estáticos
 
 EL servidor de archivos estáticos contiene recursos qué no son dinámicos y que siempre serán enviados en la respuesta de la misma forma, como por ejemplo archivos javascript, hojas de estilo, imágenes o archivos base de html.
+
+### Enviar JSON
+
+A través del método json() de la respuesta, podemos enviar json al cliente.
