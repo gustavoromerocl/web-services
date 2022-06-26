@@ -68,3 +68,7 @@ Iniciar mongodb: sudo systemctl start mongod
 Detener mongodb: sudo systemctl stop mongod
 Ver estado de conexión: sudo systemctl status mongod
 
+### Modelos en Mogoose
+
+
+
