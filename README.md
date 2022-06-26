@@ -54,3 +54,6 @@ npm install -g express-generator
 
 express nombre-app
 
+### Recorriendo una app generada por express generator
+
+Para generar un servicio web no necesitaremos algunas librerias que vienen dispuestas en el proyecto base, tales como cookie-parser y el motor de vistas jade. Nuestro objetivo es generar un servicio por lo tanto no vamos a necesitar renderizar vistas ni cookies.
