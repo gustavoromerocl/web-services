@@ -57,3 +57,14 @@ express nombre-app
 ### Recorriendo una app generada por express generator
 
 Para generar un servicio web no necesitaremos algunas librerias que vienen dispuestas en el proyecto base, tales como cookie-parser y el motor de vistas jade. Nuestro objetivo es generar un servicio por lo tanto no vamos a necesitar renderizar vistas ni cookies.
+
+### Configurar la base de datos
+
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+https://askubuntu.com/questions/823288/mongodb-loads-but-breaks-returning-status-14
+
+Instalar ODM: npm i mongoose
+Iniciar mongodb: sudo systemctl start mongod
+Detener mongodb: sudo systemctl stop mongod
+Ver estado de conexión: sudo systemctl status mongod
+

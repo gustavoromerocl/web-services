@@ -1,12 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var logger = require('morgan'); //Registra en un log todas las peticiones que ingresan desde el cliente
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let logger = require('morgan'); //Registra en un log todas las peticiones que ingresan desde el cliente
+const db = require('./config/database');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+db.connect();
 
-var app = express();
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
+
+let app = express();
+
 
 
 app.use(logger('dev'));
