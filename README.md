@@ -45,3 +45,12 @@ nodemon app.js
 npm i body-parser
 
 Body parser nos permite leer el cuerpo de las request, es una librería de node
+
+## Bases de datos y CRUD
+
+### Generar app con Express
+
+npm install -g express-generator 
+
+express nombre-app
+
