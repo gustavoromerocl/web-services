@@ -34,3 +34,8 @@ EL servidor de archivos estáticos contiene recursos qué no son dinámicos y qu
 ### Enviar JSON
 
 A través del método json() de la respuesta, podemos enviar json al cliente.
+
+### Nodemon para recargar el servidor
+
+npm i -g nodemon
+nodemon app.js

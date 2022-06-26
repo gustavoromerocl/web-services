@@ -19,6 +19,11 @@ const places = [
     "title": "test title",
     "description": "Lorem Ipsum",
     "address": "Lorem Ipsum"
+  },
+  {
+    "title": "test title",
+    "description": "Lorem Ipsum",
+    "address": "Lorem Ipsum"
   }
 ]
 
