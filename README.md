@@ -39,3 +39,9 @@ A través del método json() de la respuesta, podemos enviar json al cliente.
 
 npm i -g nodemon
 nodemon app.js
+
+### Rutas POST y postman
+
+npm i body-parser
+
+Body parser nos permite leer el cuerpo de las request, es una librería de node
