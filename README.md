@@ -26,3 +26,7 @@ Cabe mencionar que el cliente genera una nueva petición por cada archivo que de
 El programa servidor contiene lógica que le permite definir qué archivo enviará, si ese archivo requiere de información de una base de datos, si dicha información debe ser procesada o transformada, etc.
 
 En un servidor web, este programa se encarga de enviar y recibir datos, estos datos, además, deben ser enviados en un formato previamente definido.
+
+### Servidor de archivos estáticos
+
+EL servidor de archivos estáticos contiene recursos qué no son dinámicos y que siempre serán enviados en la respuesta de la misma forma, como por ejemplo archivos javascript, hojas de estilo, imágenes o archivos base de html.
