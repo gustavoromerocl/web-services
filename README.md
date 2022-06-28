@@ -128,5 +128,11 @@ Mongoose nos entrega distintos métodos para realizar la manipulación de recurs
 
 https://mongoosejs.com/docs/queries.html
 
+### Actualizar lugares
 
+https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate
+
+https://mongoosejs.com/docs/api.html#model_Model.updateMany
+
+https://mongoosejs.com/docs/api.html#model_Model.updateOne
 

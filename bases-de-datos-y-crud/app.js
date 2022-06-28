@@ -58,6 +58,36 @@ app.get('/places/:id', (req, res) => {
     })
 })
 
+app.put('/places/:id', (req, res) => {
+/*   Place.findById(req.params.id)
+    .then(doc => {
+      doc.title = req.body.title,
+      doc.description = req.body.description,
+      doc.acceptCreditCard = req.body.acceptCreditCard,
+      doc.openHour = req.body.openHour,
+      doc.closeHour = req.body.closeHour
+
+      doc.save();
+      res.json(doc);
+    }) */
+
+    Place.updateOne({_id: req.params.id},{
+      title: req.body.title,
+      description: req.body.description,
+      acceptCreditCard: req.body.acceptCreditCard,
+      openHour: req.body.openHour,
+      closeHour: req.body.closeHour
+    })
+      .then(doc => res.json(doc))
+      .catch(err => {
+        console.log(err);
+        res.json(err);
+      })
+
+})
+
+
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
