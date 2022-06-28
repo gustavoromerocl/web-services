@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => res.json({"message": "Hola tavo"}));
+app.get('/', (req, res) => res.json({ "message": "Hola tavo" }));
 
 app.post('/places', (req, res) => {
   Place.create({
@@ -37,7 +37,7 @@ app.post('/places', (req, res) => {
     })
 });
 
-app.get('/places', (req, res) => 
+app.get('/places', (req, res) =>
   //Si al find method no se le pasa argumentos asume que trae la colección completa sin filtros
   Place.find({})
     .then(docs => res.json(docs))
@@ -47,13 +47,24 @@ app.get('/places', (req, res) =>
     })
 );
 
+app.get('/places/:id', (req, res) => {
+  //res.json(req.params.id)
+  //REaliza búsqueda por id
+  Place.findById(req.params.id)
+    .then(doc => res.json(doc))
+    .catch(err => {
+      console.log(err);
+      res.json(err);
+    })
+})
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

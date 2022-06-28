@@ -122,4 +122,11 @@ Se gestiona a través del método create del modelo
 
 Se gestiona a través del método find del modelo
 
+### Mostrar un lugar
+
+Mongoose nos entrega distintos métodos para realizar la manipulación de recursos, en este caso usé finById.
+
+https://mongoosejs.com/docs/queries.html
+
+
 
