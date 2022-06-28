@@ -136,3 +136,6 @@ https://mongoosejs.com/docs/api.html#model_Model.updateMany
 
 https://mongoosejs.com/docs/api.html#model_Model.updateOne
 
+### Eliminar lugares
+
+https://mongoosejs.com/docs/api.html#model_Model.findOneAndRemove
