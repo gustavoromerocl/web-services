@@ -144,4 +144,8 @@ https://mongoosejs.com/docs/api.html#model_Model.findOneAndRemove
 
 ### Crear rutas
 
-Separar la lógica de rutas para modularizar el código. El objeto router nos provee de el método route para agrupar todos lo verbos http en un mismo uri
+Separar la lógica de rutas para modularizar el código. El objeto router nos provee de el método route para agrupar todos lo verbos http en un mismo uri.
+
+### Controladores
+
+Relación directa con las rutas, almacenan el controlador o lógica del modelo
