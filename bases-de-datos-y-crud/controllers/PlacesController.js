@@ -2,7 +2,19 @@ const Place = require('../models/Place');
 
 const index = (req, res) => {
   //Si al find method no se le pasa argumentos asume que trae la colección completa sin filtros
-  Place.find({})
+/*   Place.find({})
+    .then(docs => res.json(docs))
+    .catch(err => {
+      console.log(err);
+      res.json(err);
+    }) */
+
+    //paginate de mongoose recibe como primer argumentos los where's o filtros
+    //Como segundo argumento recibe la paginacióń
+    //Como tercer argumento recibe el limite de elementos por página
+    //Como cuarto argumento, recibe el orden, por default es desde el primero creado al ultimo, si agtregamos -1 lo invierte
+    Place.paginate({},{page: req.query.page || 1, limit: 8, sort: {'_id': -1}})
+    //Los query son los que se reciben en la url despúes del ?
     .then(docs => res.json(docs))
     .catch(err => {
       console.log(err);

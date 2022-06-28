@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 let placeSquema = new mongoose.Schema({
   title: {
@@ -15,6 +16,8 @@ let placeSquema = new mongoose.Schema({
   openHour: Number,
   closeHour: Number
   })
+
+placeSquema.plugin(mongoosePaginate);
 
 let Place = mongoose.model('Place', placeSquema);
 

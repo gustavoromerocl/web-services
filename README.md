@@ -149,3 +149,7 @@ Separar la lógica de rutas para modularizar el código. El objeto router nos pr
 ### Controladores
 
 Relación directa con las rutas, almacenan el controlador o lógica del modelo
+
+### Paginación
+
+npm install mongoose-paginate
