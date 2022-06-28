@@ -153,3 +153,63 @@ Relación directa con las rutas, almacenan el controlador o lógica del modelo
 ### Paginación
 
 npm install mongoose-paginate
+
+### Qué es un Middleware en Express
+
+El concepto de middlewares es popular en muchos frameworks, de Desarrollo Web. Están por ejemplo los que dependen fuertemente del concepto como por ejemplo Express, los que lo usan detrás de cámaras o como una configuración avanzada, como lo hace Ruby on Rails, etc.
+
+Un Middleware tiene como propósito tomar dos piezas de la aplicación y conectarlas, como un puente en el que fluye la información. Normalmente decimos que una rutina de código tiene como propósito recibir información y retornarla transformada, la única característica especial de un Middleware es que la información la obtiene de otra función de código para luego enviársela a una función distinta más.
+
+Los middlewares en Express se montan por múltiples razones, una de ellas por ejemplo es validar la información antes de que llegue a la rutina que enviará respuesta hacia el cliente, también pueden usarse para hacer una consulta y guardar información antes de que pase a las funciones que responderán.
+
+Un middleware en Express es una función, cuyo único distintivo es que recibe 3 argumentos:
+
+function(req,res,next){}
+Los primeros dos argumentos, como cualquier función que responde respuestas del cliente contiene la información de la solicitud en el primer argumento Request, y el objeto Response como segundo argumento, que nos sirve para modificar la respuesta que se enviará a el usuario.
+
+El tercer argumento es muy importante, este es el que distingue un middleware de una función de respuesta. Este tercer argumento es una función que contiene el siguiente middleware o función a ejecutar luego de que el actual termine su ejecución.
+
+Esta función next termina la ejecución de nuestro middleware y puede hacerlo de dos formas.
+
+Con éxito, la función next en este caso no recibe argumentos al ejecutarse, indicándole al siguiente punto de la ejecución que todo salió bien.
+Con un error, el error se envía como argumento de la función, indicando al siguiente punto de la ejecución que algo salió mal y no puede continuar con la respuesta de la petición del cliente.
+Todo salió bien:
+
+function miMiddleware(req,res,next){
+   next();
+}
+Enviamos un error en el middleware
+
+function miMiddleware(req,res,next){
+  if(user.permisos != "admin"){
+       next(new Error('No tienes permisos para estar aquí'));
+   }
+}
+Estas funciones se montan en el proceso de respuesta a una petición usando el método use del objeto app
+
+const express = require('express');
+const app = express();
+
+function miMiddleware(req,res,next){
+   next();
+}
+
+app.use(next) //Esto indica que antes de cualquier función de respuesta se debe ejecutar este middleware
+O bien como parte de la respuesta de una ruta:
+
+
+
+const express = require('express');
+const app = express();
+
+function miMiddleware(req,res,next){
+   next();
+}
+
+app.get('/',miMiddleware,function(req,res){
+   /* Se ejecutará esta función luego del middleware */
+});
+
+En ambos casos, es posible que podamos colocar cuantos middlewares queramos definir, lo importante es que cada uno llame la función next, sin argumentos, para que el siguiente middleware se ejecute hasta llegar a la función de respuesta.
+
+Ahora, pasemos al siguiente tema donde veremos cómo integrar este conocimiento en nuestro proyecto.
