@@ -116,4 +116,10 @@ https://stackoverflow.com/questions/671118/what-exactly-is-restful-programming
 
 ### Crear Lugares
 
+Se gestiona a través del método create del modelo
+
+### Mostrar lugares
+
+Se gestiona a través del método find del modelo
+
 
