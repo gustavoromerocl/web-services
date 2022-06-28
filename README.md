@@ -139,3 +139,9 @@ https://mongoosejs.com/docs/api.html#model_Model.updateOne
 ### Eliminar lugares
 
 https://mongoosejs.com/docs/api.html#model_Model.findOneAndRemove
+
+## Más allá de lo básico
+
+### Crear rutas
+
+Separar la lógica de rutas para modularizar el código. El objeto router nos provee de el método route para agrupar todos lo verbos http en un mismo uri
