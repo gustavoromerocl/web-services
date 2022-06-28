@@ -70,5 +70,47 @@ Ver estado de conexión: sudo systemctl status mongod
 
 ### Modelos en Mogoose
 
+### REST y Verbos HTTP
 
+REST es un tipo de arquitectura para el desarrollo de proyectos web. Principalmente, los principios que componen esta arquitectura son los siguientes:
+
+#### RECURSOS IDENTIFICABLES
+Los recursos en una aplicación web REST, tienen un identificador persistente, es decir, que no cambia con el tiempo. Usualmente este identificador es una URI, como por ejemplo: http://codigofacilito.com/cursos/javascript-profesional identifica el curso de JavaScript.
+
+#### RECURSOS MANIPULABLES CON VERBOS HTTP.
+REST propone que los recursos sean manipulados usando los verbos estándar que forman parte del protocolo HTTP, los usados son los siguientes: GET, POST, PUT, PATCH y DELETE.
+
+GET, por su parte, debe ser usado para leer recursos, y debe ser idempotente, lo que significa que si realizas la misma acción muchas veces, el resultado es el mismo.
+
+Lo importante del párrafo anterior, es entender que GET no modifica, crea o altera los recursos que se almacenan en el servidor web, ya que rompería la propiedad de idempotencia.
+
+Los verbos HTTP se usan de la siguiente manera:
+
+POST: Sirve para crear nuevos recursos, por ejemplo POST /cursos crea un nuevo curso en la colección de cursos.
+
+GET: Sirve para lectura de recursos, por ejemplo GET /cursos lee la colección de cursos.
+
+PUT: Sirve para actualizar recursos, por ejemplo PUT /cursos/javascript-profesional actualizaría el curso de JavaScript Profesional con los datos indicados.
+
+DELETE: Sirve para eliminar recursos, por ejemplo DELETE /cursos/javascript-profesional eliminaría el recurso indicado.
+
+La ventaja de usar verbos HTTP es que son un estándar, lo que permite desarrollar servicios que recibirán comunicación de otros programas, sin que de ante mano estos sepan cómo deben comunicarse.
+
+#### LOS RECURSOS SE REPRESENTAN DE DISTINTAS MANERAS.
+Un recurso puede ser representado por un archivo HTML, por una estructura JSON, una estructura XML, un PDF, etc.
+
+La representación depende de la petición, por ejemplo GET /cursos/javascript-profesional.json nos entrega la representación en JSON, mientras que GET /cursos/javascript-profesional entrega la versión en HTML.
+
+#### LOS RECURSOS CONSERVAN SU PROPIO ESTADO
+Una de las principales características de un programa REST, es que no tiene un estado. En desarrollo web, el estado puede ser guardado usando sesiones, las sesiones en un servicio web REST no existen.
+
+Usualmente es el cliente el que conserva el estado y lo envía en cada petición.
+
+Este es el trasfondo del funcionamiento de la autenticación con tokens, misma que cubriremos más adelante en el curso.
+
+Para saber más. Existen algunas otras características de una arquitectura REST, sin embargo, no las cubriremos para el propósito de este curso, si quieres saber más, te dejo algunos links interesantes:
+
+http://web.archive.org/web/20130116005443/http://tomayko.com/writings/rest-to-my-wife
+
+https://stackoverflow.com/questions/671118/what-exactly-is-restful-programming
 
