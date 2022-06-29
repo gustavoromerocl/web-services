@@ -1,53 +1,62 @@
 const Place = require('../models/Place');
 
-const index = (req, res) => {
+const index = async (req, res) => {
   //Si al find method no se le pasa argumentos asume que trae la colección completa sin filtros
-/*   Place.find({})
-    .then(docs => res.json(docs))
-    .catch(err => {
-      console.log(err);
-      res.json(err);
-    }) */
+  /*   Place.find({})
+      .then(docs => res.json(docs))
+      .catch(err => {
+        console.log(err);
+        res.json(err);
+      }) */
 
+  try {
     //paginate de mongoose recibe como primer argumentos los where's o filtros
     //Como segundo argumento recibe la paginacióń
     //Como tercer argumento recibe el limite de elementos por página
     //Como cuarto argumento, recibe el orden, por default es desde el primero creado al ultimo, si agtregamos -1 lo invierte
-    Place.paginate({},{page: req.query.page || 1, limit: 8, sort: {'_id': -1}})
+    const data = await Place.paginate({}, { page: req.query.page || 1, limit: 8, sort: { '_id': -1 } })
     //Los query son los que se reciben en la url despúes del ?
-    .then(docs => res.json(docs))
-    .catch(err => {
-      console.log(err);
-      res.json(err);
-    })
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+
 }
 
-const show = (req, res) => {
+const show = async (req, res) => {
   //res.json(req.params.id)
-  //REaliza búsqueda por id
-  Place.findById(req.params.id)
-    .then(doc => res.json(doc))
-    .catch(err => {
-      console.log(err);
-      res.json(err);
-    })
+  //Realiza búsqueda por id
+  try {
+    const data = await Place.findById(req.params.id);
+    res.json(data);
+  } catch (err) {
+    console.log(err)
+    res.json(err)
+  }
+
 }
 
-const create = (req, res) => {
-  Place.create({
-    title: req.body.title,
-    description: req.body.description,
-    acceptCreditCard: req.body.acceptCreditCard,
-    openHour: req.body.openHour,
-    closeHour: req.body.closeHour
-  }).then(doc => res.json(doc))
-    .catch(err => {
-      console.log(err)
-      res.json(err)
+const create = async (req, res) => {
+  try {
+    const data = await Place.create({
+      title: req.body.title,
+      description: req.body.description,
+      acceptCreditCard: req.body.acceptCreditCard,
+      openHour: req.body.openHour,
+      closeHour: req.body.closeHour
     })
+
+    res.json(data);
+
+  } catch (err) {
+    console.log(err)
+    res.json(err)
+  }
+
 }
 
-const update = (req, res) => {
+const update = async (req, res) => {
   /*   Place.findById(req.params.id)
       .then(doc => {
         doc.title = req.body.title,
@@ -60,29 +69,31 @@ const update = (req, res) => {
         res.json(doc);
       }) */
 
-  Place.updateOne({ _id: req.params.id }, {
-    title: req.body.title,
-    description: req.body.description,
-    acceptCreditCard: req.body.acceptCreditCard,
-    openHour: req.body.openHour,
-    closeHour: req.body.closeHour
-  })
-    .then(doc => res.json(doc))
-    .catch(err => {
-      console.log(err);
-      res.json(err);
+  try {
+    const data = await Place.updateOne({ _id: req.params.id }, {
+      title: req.body.title,
+      description: req.body.description,
+      acceptCreditCard: req.body.acceptCreditCard,
+      openHour: req.body.openHour,
+      closeHour: req.body.closeHour
     })
+
+    res.json(data);
+
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
 }
 
 const destroy = (req, res) => {
-  Place.findByIdAndRemove(req.params.id)
-    .then(doc => {
-      res.json({})
-    })
-    .catch(err => {
-      console.log(err);
-      res.json(err);
-    })
+  try {
+    const data = Place.findByIdAndRemove(req.params.id)
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
 }
 
-module.exports = {index, show, create, update, destroy}
+module.exports = { index, show, create, update, destroy }
