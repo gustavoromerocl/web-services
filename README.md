@@ -222,3 +222,6 @@ Generamos un middleware que se ejecute antes de los endpoints que requieren busc
 
 https://cloudinary.com/
 
+### Subir imagenes a cloudinary
+
+npm install cloudinary
