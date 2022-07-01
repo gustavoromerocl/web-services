@@ -213,3 +213,12 @@ app.get('/',miMiddleware,function(req,res){
 En ambos casos, es posible que podamos colocar cuantos middlewares queramos definir, lo importante es que cada uno llame la función next, sin argumentos, para que el siguiente middleware se ejecute hasta llegar a la función de respuesta.
 
 Ahora, pasemos al siguiente tema donde veremos cómo integrar este conocimiento en nuestro proyecto.
+
+### Middleware para búsqueda individual
+
+Generamos un middleware que se ejecute antes de los endpoints que requieren buscar un lugar en especifico (show, update y delete)
+
+### Configurar Cloudinary
+
+https://cloudinary.com/
+
