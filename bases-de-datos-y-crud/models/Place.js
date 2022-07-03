@@ -13,6 +13,7 @@ let placeSquema = new mongoose.Schema({
     type: String,
     unique: true
   },
+  address: String,
   description: String,
   acceptCreditCard: {
     type: Boolean,
@@ -45,7 +46,7 @@ let placeSquema = new mongoose.Schema({
 //Hooks
 placeSquema.pre('save', async function(next){
   //Validamos que el elemento no exista previamente para evitar cambiar el slug al hacer update
-  if(this._id) return next();
+  if(this.slug) return next();
 
   //call, bind y apply (Scope): call preserva el valor de this
   await generateSlugAndContinue.call(this, 0, next);

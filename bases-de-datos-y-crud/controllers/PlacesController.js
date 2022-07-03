@@ -1,5 +1,9 @@
 const Place = require('../models/Place');
 const upload = require('../config/upload');
+const helpers = require('./helpers');
+
+
+const validParams = ['title', 'description', 'address', 'acceptCreditCard', 'openHour', 'closeHour'];
 
 //Middleware de búsqueda individual
 const find = async (req, res, next) => {
@@ -49,13 +53,8 @@ const show = async (req, res) => {
 const create = async (req, res, next) => {
   //Crear un recurso
   try {
-    const data = await Place.create({
-      title: req.body.title,
-      description: req.body.description,
-      acceptCreditCard: req.body.acceptCreditCard,
-      openHour: req.body.openHour,
-      closeHour: req.body.closeHour
-    })
+    const params = helpers.paramsBuilder(validParams, req.body);
+    const data = await Place.create(params);
 
     //Guardamos el nuevo lugar en el objeto request para usarlo en la función saveImage
     req.place = data;
@@ -67,19 +66,11 @@ const create = async (req, res, next) => {
 }
 
 const update = async (req, res) => {
-  //Actualizar un recurso
-  let attributes = ['title', 'description', 'acceptCreditCard', 'openHour', 'closeHour'];
-  let placeParams = {};
-
-  //https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty
-  attributes.forEach(attr => {
-    if (Object.prototype.hasOwnProperty.call(req.body, attr))
-      placeParams[attr] = req.body[attr];
-  })
-
   try {
+    const params = helpers.paramsBuilder(validParams, req.body);
     //Retorna un nuevo objeto comparando los que recibe por parametros y actualizando los valores
-    req.place = Object.assign(req.place, placeParams);
+    
+    req.place = Object.assign(req.place, params);
     req.place.save()
 
     res.json(req.place);

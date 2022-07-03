@@ -252,3 +252,6 @@ Se generan funciones para realizar generar nuevos slug en caso de que ya existan
 
 ### Cambiar busqueda de IDs a Slug (URIs)
 
+### Manejo de parametros
+
+Refactor para reutilizar el manejo de params
