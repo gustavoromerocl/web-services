@@ -43,10 +43,30 @@ let placeSquema = new mongoose.Schema({
 })
 
 //Hooks
-placeSquema.pre('save', function(next){
-  this.slug = slugify(this.title);
+placeSquema.pre('save', async function(next){
+  //call, bind y apply (Scope): call preserva el valor de this
+  await generateSlugAndContinue.call(this, 0, next);
   next();
 })
+
+placeSquema.statics.validateSlugCount = async function(slug){
+  const count = await Place.count({slug});
+  if(count > 0) return false;
+  return true;
+}
+
+async function generateSlugAndContinue(count, next){
+  this.slug = slugify(this.title);
+  //Si el recurso ya existe se agrega un numero al slug
+  if(count != 0) this.slug = `${this.slug}-${count}`;
+
+  const isValid = await Place.validateSlugCount(this.slug);
+  //Si el slug no es valido, se aumenta el contador y se vuelve a ejecutar la función
+  if(!isValid) generateSlugAndContinue.call(this,count+1, next);
+  
+  //Validamos si es un valor que no existe previamente para terminar la ejecución con next
+  next();
+}
 
 placeSquema.plugin(mongoosePaginate);
 

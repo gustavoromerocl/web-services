@@ -245,3 +245,7 @@ https://cloudinary.com/documentation/node_image_and_video_upload
 https://gist.github.com/mathewbyrne/1280286
 
 Con el fin de generar rutas de los recursos mas declarativas, podemos usar slug, para parsear un dato con el formato para una ruta.
+
+### Evitar colisiones con las SEO URLs
+
+Se generan funciones para realizar generar nuevos slug en caso de que ya existan previamente
