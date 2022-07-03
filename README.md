@@ -222,6 +222,14 @@ Generamos un middleware que se ejecute antes de los endpoints que requieren busc
 
 https://cloudinary.com/
 
-### Subir imagenes a cloudinary
+### Subir imágenes a cloudinary
 
 npm install cloudinary
+
+### Subir imágenes a cloudinary pt 2
+
+middleware para la subida:
+npm install multer
+
+Esta configuración lo gestiona de manera local
+

@@ -1,4 +1,5 @@
 const Place = require('../models/Place');
+const upload = require('../config/upload');
 
 //Middleware de búsqueda individual
 const find = async (req, res, next) => {
@@ -98,4 +99,9 @@ const destroy = (req, res) => {
   }
 }
 
-module.exports = { index, show, create, update, destroy, find}
+const multerMiddleware = () => upload.fields([
+  {name: 'avatar', maxCount: 1},
+  {name: 'cover', maxCount: 1 }
+]);
+
+module.exports = { index, show, create, update, destroy, find, multerMiddleware}
