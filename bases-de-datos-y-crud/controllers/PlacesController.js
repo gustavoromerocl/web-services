@@ -4,8 +4,8 @@ const upload = require('../config/upload');
 //Middleware de búsqueda individual
 const find = async (req, res, next) => {
   try {
-    const place = await Place.findById(req.params.id)
-
+    //findOne: realiza la búsqueda de un recurso por la propiedad que se le indique, en este caso busca hacermatch con el query param
+    const place = await Place.findOne({slug: req.params.id}).exec();
     req.place = place;
     next();
 

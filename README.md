@@ -249,3 +249,6 @@ Con el fin de generar rutas de los recursos mas declarativas, podemos usar slug,
 ### Evitar colisiones con las SEO URLs
 
 Se generan funciones para realizar generar nuevos slug en caso de que ya existan previamente
+
+### Cambiar busqueda de IDs a Slug (URIs)
+
