@@ -5,7 +5,10 @@ const placesController = require('../controllers/PlacesController')
 
 router.route('/')
   .get(placesController.index)
-  .post(placesController.multerMiddleware(), placesController.create)
+  .post(
+    placesController.multerMiddleware(), 
+    placesController.create, 
+    placesController.saveImage)
 
 //El middleware find actúa como una capa intermedia entre la ejeución de los métodos
 router.route('/:id')

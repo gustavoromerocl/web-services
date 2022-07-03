@@ -233,3 +233,5 @@ npm install multer
 
 Esta configuración lo gestiona de manera local
 
+### Mover imágenes a la nube
+

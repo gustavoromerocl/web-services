@@ -1,5 +1,6 @@
 const Place = require('../models/Place');
 const upload = require('../config/upload');
+const uploader = require('../models/Uploader');
 
 //Middleware de búsqueda individual
 const find = async (req, res, next) => {
@@ -7,10 +8,10 @@ const find = async (req, res, next) => {
     const  place = await Place.findById(req.params.id)
 
     req.place = place;
-    next()
+    next();
 
   } catch (err) {
-    next(err)
+    next(err);
   }
 }
 
@@ -45,7 +46,8 @@ const show = async (req, res) => {
   res.json(req.place);
 }
 
-const create = async (req, res) => {
+//Transformamos la función create en un middleware
+const create = async (req, res, next) => {
   //Crear un recurso
   try {
     const data = await Place.create({
@@ -56,11 +58,11 @@ const create = async (req, res) => {
       closeHour: req.body.closeHour
     })
 
-    res.json(data);
-
+    //Guardamos el nuevo lugar en el objeto request para usarlo en la función saveImage
+    req.place = data;
+    next();
   } catch (err) {
-    console.log(err)
-    res.json(err)
+    next(err)
   }
 
 }
@@ -104,4 +106,25 @@ const multerMiddleware = () => upload.fields([
   {name: 'cover', maxCount: 1 }
 ]);
 
-module.exports = { index, show, create, update, destroy, find, multerMiddleware}
+const saveImage = async (req, res) => {
+  if(req.place){
+    if(req.files && req.files.avatar){
+      try{
+        const path = req.files.avatar[0].path;
+        const place = await uploader(path);
+        
+        console.log(place);
+        res.json(req.place);
+      }catch(err){
+        console.log(err);
+        res.json(err);
+      }
+    }
+  }else{
+    res.status(422).json({
+      error: req.error || 'Could not save place'
+    });
+  }
+}
+
+module.exports = { index, show, create, update, destroy, find, multerMiddleware, saveImage}
