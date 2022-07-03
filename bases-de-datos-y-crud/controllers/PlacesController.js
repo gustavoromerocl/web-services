@@ -1,11 +1,10 @@
 const Place = require('../models/Place');
 const upload = require('../config/upload');
-const uploader = require('../models/Uploader');
 
 //Middleware de búsqueda individual
 const find = async (req, res, next) => {
   try {
-    const  place = await Place.findById(req.params.id)
+    const place = await Place.findById(req.params.id)
 
     req.place = place;
     next();
@@ -74,7 +73,7 @@ const update = async (req, res) => {
 
   //https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty
   attributes.forEach(attr => {
-    if(Object.prototype.hasOwnProperty.call(req.body, attr))
+    if (Object.prototype.hasOwnProperty.call(req.body, attr))
       placeParams[attr] = req.body[attr];
   })
 
@@ -102,29 +101,39 @@ const destroy = (req, res) => {
 }
 
 const multerMiddleware = () => upload.fields([
-  {name: 'avatar', maxCount: 1},
-  {name: 'cover', maxCount: 1 }
+  { name: 'avatar', maxCount: 1 },
+  { name: 'cover', maxCount: 1 }
 ]);
 
 const saveImage = async (req, res) => {
-  if(req.place){
-    if(req.files && req.files.avatar){
-      try{
-        const path = req.files.avatar[0].path;
-        const place = await uploader(path);
-        
-        console.log(place);
-        res.json(req.place);
-      }catch(err){
-        console.log(err);
-        res.json(err);
+  if (req.place) {
+    const files = ['avatar', 'cover'];
+    let promises = [];
+
+    //Iteramo sobre los tipos de imagenes almacenados en files
+    files.forEach(async (imageType) => {
+      //Validamos que hayan archivos cargados y que el tipo de imagen correponda al que se esta iterando
+      if (req.files && req.files[imageType]) {
+        //Almacenamos el path en una variable
+        const path = req.files[imageType][0].path;
+        //Agregamos una promesa al arreglo de promesas para subir la imagen a la nube
+        promises = [...promises, req.place.updateImage(path, imageType)];
       }
+    })
+
+    //console.log(promises);
+    //Ejecutamos el arreglo de promesas
+    try {
+      await Promise.all(promises);
+      //console.log(response);
+      res.json(req.place);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({})
     }
   }else{
-    res.status(422).json({
-      error: req.error || 'Could not save place'
-    });
+    res.status(422).json({})
   }
 }
 
-module.exports = { index, show, create, update, destroy, find, multerMiddleware, saveImage}
+module.exports = { index, show, create, update, destroy, find, multerMiddleware, saveImage }

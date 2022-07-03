@@ -235,3 +235,8 @@ Esta configuración lo gestiona de manera local
 
 ### Mover imágenes a la nube
 
+### Guardar información de las imágenes en la base de datos
+
+https://mongoosejs.com/docs/guide.html
+https://cloudinary.com/documentation/node_image_and_video_upload
+
