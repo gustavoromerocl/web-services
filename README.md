@@ -240,3 +240,8 @@ Esta configuración lo gestiona de manera local
 https://mongoosejs.com/docs/guide.html
 https://cloudinary.com/documentation/node_image_and_video_upload
 
+### Generar SEO URLs
+
+https://gist.github.com/mathewbyrne/1280286
+
+Con el fin de generar rutas de los recursos mas declarativas, podemos usar slug, para parsear un dato con el formato para una ruta.

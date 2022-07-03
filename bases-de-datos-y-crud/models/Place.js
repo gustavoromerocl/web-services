@@ -2,11 +2,16 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
 const uploader = require('./Uploader');
+const slugify = require('../plugins/slugify');
 
 let placeSquema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+  },
+  slug: {
+    type: String,
+    unique: true
   },
   description: String,
   acceptCreditCard: {
@@ -35,6 +40,12 @@ let placeSquema = new mongoose.Schema({
       return await this.save();
     },
   }
+})
+
+//Hooks
+placeSquema.pre('save', function(next){
+  this.slug = slugify(this.title);
+  next();
 })
 
 placeSquema.plugin(mongoosePaginate);
