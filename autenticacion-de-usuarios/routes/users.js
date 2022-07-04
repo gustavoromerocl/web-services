@@ -5,10 +5,10 @@ const UsersController = require('../controllers/UsersController');
 const SessionsController = require('../controllers/SessionsController');
 
 router.route('/')
+  //create se convierte en middleware y envia el usuario a el controlador de sesion para generar el token
   .post(
-    UsersController.create, 
-    //create se convierte en middleware y envia el usuario a el controlador de sesion para generar el token
-    SessionsController.generateToken, 
+    UsersController.create,
+    SessionsController.generateToken,
     SessionsController.sendToken)
 
-module.exports = router;
+  module.exports = router;

@@ -14,6 +14,16 @@ let userSchema = new mongoose.Schema({
   }
 });
 
+//Hoock
+//post se ejcuta despues del método save, recibe dos argumentos, el usuario creado y el método next
+userSchema.post('save', async function (user, next) {
+  const count = await User.count();
+  //Solo si es el primer usuario le asigna el admin true, para el resto es false
+  if (count === 1) await User.updateOne({_id: user._id}, {admin: true});
+  
+  next();
+})
+
 //Asigna un campo password con las funciones necesarias para manipular la encriptación
 userSchema.plugin(mongooseBcrypt);
 
