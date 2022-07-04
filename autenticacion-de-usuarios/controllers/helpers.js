@@ -1,4 +1,4 @@
-function paramsBuilder(validParams, body) {
+function buildParams(validParams, body) {
   //Actualizar un recurso
   let params = {};
 
@@ -11,4 +11,4 @@ function paramsBuilder(validParams, body) {
   return params;
 }
 
-module.exports = { paramsBuilder } 
+module.exports = { buildParams } 

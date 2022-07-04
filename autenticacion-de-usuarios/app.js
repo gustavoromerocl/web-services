@@ -1,12 +1,13 @@
 /* Express dependencies */
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let logger = require('morgan'); //Registra en un log todas las peticiones que ingresan desde el cliente
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan'); //Registra en un log todas las peticiones que ingresan desde el cliente
 
 //Custom dependencies
 const db = require('./config/database');
 const places = require('./routes/places');
+const users = require('./routes/users');
 
 
 db.connect();
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Routes
 app.get('/', (req, res) => res.json({ "message": "Hola tavo" }));
 app.use('/places', places);
+app.use('/users', users)
 
 
 // catch 404 and forward to error handler
@@ -37,7 +39,6 @@ app.use(function (req, res, next) {
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
-  console.log(err);
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

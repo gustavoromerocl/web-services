@@ -53,7 +53,7 @@ const show = async (req, res) => {
 const create = async (req, res, next) => {
   //Crear un recurso
   try {
-    const params = helpers.paramsBuilder(validParams, req.body);
+    const params = helpers.buildParams(validParams, req.body);
     const data = await Place.create(params);
 
     //Guardamos el nuevo lugar en el objeto request para usarlo en la función saveImage
@@ -67,7 +67,7 @@ const create = async (req, res, next) => {
 
 const update = async (req, res) => {
   try {
-    const params = helpers.paramsBuilder(validParams, req.body);
+    const params = helpers.buildParams(validParams, req.body);
     //Retorna un nuevo objeto comparando los que recibe por parametros y actualizando los valores
     
     req.place = Object.assign(req.place, params);
