@@ -265,3 +265,7 @@ Refactor para reutilizar el manejo de params
 npm install mongoose-bcrypt
 
 ### Crear usuarios
+
+### Generar JSON web Tokens
+
+npm install jsonwebtoken
