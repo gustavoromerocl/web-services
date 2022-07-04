@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const UsersController = require('../controllers/UsersController');
 const SessionsController = require('../controllers/SessionsController');
 
 router.route('/')
   .post(
-    UsersController.create, 
-    //create se convierte en middleware y envia el usuario a el controlador de sesion para generar el token
+    SessionsController.authenticate, 
+    //validamos que las credenciales (email, password) existan en nuestra bbdd y si existe, generamos y enviamos el token
     SessionsController.generateToken, 
     SessionsController.sendToken)
 

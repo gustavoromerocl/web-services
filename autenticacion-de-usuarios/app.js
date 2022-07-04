@@ -6,9 +6,11 @@ const logger = require('morgan'); //Registra en un log todas las peticiones que 
 
 //Custom dependencies
 const db = require('./config/database');
+
+//Routes
 const places = require('./routes/places');
 const users = require('./routes/users');
-
+const sessions = require('./routes/sessions');
 
 db.connect();
 
@@ -21,15 +23,13 @@ código es la nueva configuración
 */
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
 app.get('/', (req, res) => res.json({ "message": "Hola tavo" }));
 app.use('/places', places);
-app.use('/users', users)
-
+app.use('/users', users);
+app.use('/sessions', sessions);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

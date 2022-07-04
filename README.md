@@ -269,3 +269,7 @@ npm install mongoose-bcrypt
 ### Generar JSON web Tokens
 
 npm install jsonwebtoken
+
+### Iniciar sesión
+
+Para crear una sesión, generamos un nuevo endpoint, validamos que el usuario exista, generamos el token y lo enviamos como respuesta.
