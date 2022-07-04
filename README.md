@@ -260,3 +260,6 @@ Refactor para reutilizar el manejo de params
 
 ### Modelo de usuarios
 
+### Encriptar contraseñas con bcrypt
+
+npm install mongoose-bcrypt
