@@ -255,3 +255,8 @@ Se generan funciones para realizar generar nuevos slug en caso de que ya existan
 ### Manejo de parametros
 
 Refactor para reutilizar el manejo de params
+
+## Autenticación de usuarios
+
+### Modelo de usuarios
+
