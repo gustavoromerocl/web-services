@@ -11,6 +11,7 @@ const find = async (req, res, next) => {
     //findOne: realiza la búsqueda de un recurso por la propiedad que se le indique, en este caso busca hacermatch con el query param
     const place = await Place.findOne({slug: req.params.id}).exec();
     req.place = place;
+
     next();
 
   } catch (err) {

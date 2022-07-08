@@ -292,3 +292,5 @@ npm install express-jwt
 ### Virtuales para obtener los lugares creados por el usuario validado
 
 https://mongoosejs.com/docs/tutorials/virtuals.html
+
+### Proteger rutas para usuarios propietarios
