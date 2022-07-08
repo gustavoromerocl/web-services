@@ -22,7 +22,12 @@ let placeSquema = new mongoose.Schema({
   coverImage: String,
   avatarImage: String,
   openHour: Number,
-  closeHour: Number
+  closeHour: Number,
+  _user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
 },{
   //Los métodos se deben declarar como funciones ES5, mongoose no interpreta arrow functions ya que se basa en Clases
   methods: {

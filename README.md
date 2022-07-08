@@ -274,4 +274,11 @@ npm install jsonwebtoken
 
 Para crear una sesión, generamos un nuevo endpoint, validamos que el usuario exista, generamos el token y lo enviamos como respuesta.
 
-### asignar permisos de administrador
+### Asignar permisos de administrador
+
+## Relaciones básicas uno a muchos
+
+### Agregar campo usuario a un lugar
+
+https://mongoosejs.com/docs/populate.html
+
