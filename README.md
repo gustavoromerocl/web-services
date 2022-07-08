@@ -286,3 +286,6 @@ https://mongoosejs.com/docs/populate.html
 
 [express jwt](https://www.npmjs.com/package/express-jwt)
 npm install express-jwt
+
+### Crear lugares con un usuario
+

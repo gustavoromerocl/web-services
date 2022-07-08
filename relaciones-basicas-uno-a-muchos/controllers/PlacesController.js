@@ -54,6 +54,8 @@ const create = async (req, res, next) => {
   //Crear un recurso
   try {
     const params = helpers.buildParams(validParams, req.body);
+    //console.log(req.auth);
+    params['_user'] = req.auth.id; //Le pasamos el usuario que almacena el jwt al proteger las rutas
     const data = await Place.create(params);
 
     //Guardamos el nuevo lugar en el objeto request para usarlo en la función saveImage
