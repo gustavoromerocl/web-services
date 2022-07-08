@@ -1,0 +1,21 @@
+{
+  "name": "bases-de-datos-y-crud",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "cloudinary": "^1.30.0",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-jwt": "^7.7.5",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.0",
+    "mongoose-bcrypt": "^1.9.0",
+    "mongoose-paginate": "^5.0.3",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1"
+  }
+}
