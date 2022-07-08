@@ -282,3 +282,7 @@ Para crear una sesión, generamos un nuevo endpoint, validamos que el usuario ex
 
 https://mongoosejs.com/docs/populate.html
 
+### Proteger rutas con autenticacion
+
+[express jwt](https://www.npmjs.com/package/express-jwt)
+npm install express-jwt

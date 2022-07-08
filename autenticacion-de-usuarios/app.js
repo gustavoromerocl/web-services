@@ -3,10 +3,11 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan'); //Registra en un log todas las peticiones que ingresan desde el cliente
+const { expressjwt: jwt } = require('express-jwt'); //middleware para validar el jwt (en caso de éxito almacena el usuario en req.user )
 
 //Custom dependencies
 const db = require('./config/database');
-
+const secrets = require('./config/secrets')
 //Routes
 const places = require('./routes/places');
 const users = require('./routes/users');
@@ -24,6 +25,14 @@ código es la nueva configuración
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Recibe la firma para validar el token en cada petición
+app.use(jwt({secret: secrets.jwt_secret, algorithms: ["HS256"]})
+  .unless({ //express jwt nos provee del método unless para excluir la protección de rutas especificada
+    path: ['/sessions', '/users'], //Excluye las uri indicadas
+    method: 'GET' //Excluye el verbo GET de la protección de todas las uris
+  }) 
+);
 
 //Routes
 app.get('/', (req, res) => res.json({ "message": "Hola tavo" }));
