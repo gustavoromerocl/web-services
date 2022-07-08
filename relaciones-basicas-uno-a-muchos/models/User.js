@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const mongooseBcrypt = require('mongoose-bcrypt');
+const Place = require('./Place');
 
 let userSchema = new mongoose.Schema({
   email: {
@@ -15,13 +16,18 @@ let userSchema = new mongoose.Schema({
 });
 
 //Hoock
-//post se ejcuta despues del método save, recibe dos argumentos, el usuario creado y el método next
-userSchema.post('save', async function (user, next) {
-  const count = await User.count();
+//post se ejecuta despues del método save, recibe dos argumentos, el usuario creado y el método next
+userSchema.post('save', function (user, next) {
+  const count = User.count();
   //Solo si es el primer usuario le asigna el admin true, para el resto es false
-  if (count === 1) await User.updateOne({_id: user._id}, {admin: true});
+  if (count === 1) User.updateOne({_id: user._id}, {admin: true});
   
   next();
+})
+
+//Traer los lugares asociados al usuarios
+userSchema.virtual('places').get(function () {
+  return Place.find({'_user': this._id});
 })
 
 //Asigna un campo password con las funciones necesarias para manipular la encriptación

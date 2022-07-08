@@ -289,3 +289,6 @@ npm install express-jwt
 
 ### Crear lugares con un usuario
 
+### Virtuales para obtener los lugares creados por el usuario validado
+
+https://mongoosejs.com/docs/tutorials/virtuals.html
