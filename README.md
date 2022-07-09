@@ -294,3 +294,6 @@ npm install express-jwt
 https://mongoosejs.com/docs/tutorials/virtuals.html
 
 ### Proteger rutas para usuarios propietarios
+
+## Relaciones muchos a muchos
+
