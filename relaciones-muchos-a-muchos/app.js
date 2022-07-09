@@ -12,6 +12,7 @@ const secrets = require('./config/secrets')
 const places = require('./routes/places');
 const users = require('./routes/users');
 const sessions = require('./routes/sessions');
+const favorites = require('./routes/favorites');
 
 db.connect();
 
@@ -39,6 +40,7 @@ app.get('/', (req, res) => res.json({ "message": "Hola tavo" }));
 app.use('/places', places);
 app.use('/users', users);
 app.use('/sessions', sessions);
+app.use('/favorites', favorites);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
