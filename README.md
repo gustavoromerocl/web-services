@@ -297,3 +297,6 @@ https://mongoosejs.com/docs/tutorials/virtuals.html
 
 ## Relaciones muchos a muchos
 
+### Crear modelo Favoritos
+
+Un usuario puede tener muchos lugares favoritos y luga puede ser el favorito de muchos usuarios
