@@ -1,6 +1,6 @@
 const buildParams = require('./helpers').buildParams;
 const FavoritePlace = require('../models/FavoritePlace');
-
+const User = require('../models/User');
 const validParams = ['_place'];
 
 const find = async (req, res, next) => {
@@ -12,6 +12,19 @@ const find = async (req, res, next) => {
   } catch (error) {
     console.log(error)
     next(error);
+  }
+}
+
+const index = async (req, res) => {
+  try {
+    const user = await User.findOne({'_id': req.auth.id});
+    //Usamos el virtual creado en el modelo user
+    const places = await user.favorites; 
+    //console.log(places);
+    res.json(places);
+  } catch (error) {
+    console.log(error);
+    res.json(error);
   }
 }
 
@@ -41,4 +54,4 @@ const destroy = (req, res) => {
   
 }
 
-module.exports = { find, create, destroy };
+module.exports = { index, find, create, destroy };
