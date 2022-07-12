@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 const REACTIONS = [ 'like', 'love', 'disappointment', 'yummy', 'anger', 'disgust' ];
 

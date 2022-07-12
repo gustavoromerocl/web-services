@@ -299,4 +299,13 @@ https://mongoosejs.com/docs/tutorials/virtuals.html
 
 ### Crear modelo Favoritos
 
-Un usuario puede tener muchos lugares favoritos y luga puede ser el favorito de muchos usuarios
+### CRUD Favoritos
+
+### Virtules para relaciones muchos a muchos
+
+### Crear modelo de vistas
+
+### Enums
+
+### CRUD de visitas
+
