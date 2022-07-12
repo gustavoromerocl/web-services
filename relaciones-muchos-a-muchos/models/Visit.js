@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const REACTIONS = [ 'like', 'love', 'disappointment', 'yummy', 'anger', 'disgust' ];
+
 let visitSchema = new mongoose.Schema({
   _user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -10,6 +12,11 @@ let visitSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Place',
     required: true
+  },
+  reaction: {
+    type: String,
+    //Los enums sirven para definir una coleccion de datos válidos para una propiedad
+    enum: REACTIONS
   },
   observation: String
 });
