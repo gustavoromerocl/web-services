@@ -40,7 +40,7 @@ app.use(jwt({secret: secrets.jwt_secret, algorithms: ["HS256"]})
 //Routes
 app.get('/', (req, res) => res.json({ "message": "Hola tavo" }));
 app.use('/places', places);
-app.use('/places', visitPlaces);
+app.use('/places', visitsPlaces);
 app.use('/users', users);
 app.use('/sessions', sessions);
 app.use('/favorites', favorites);

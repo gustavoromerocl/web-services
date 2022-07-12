@@ -309,5 +309,7 @@ https://mongoosejs.com/docs/tutorials/virtuals.html
 
 ### CRUD de visitas
 
-### Visitas a través de un negocio
+### Visitas a través de lugares
+
+### Visitas de un lugar
 

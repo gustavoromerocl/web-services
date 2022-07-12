@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
 const uploader = require('./Uploader');
 const slugify = require('../plugins/slugify');
+const Visit = require('./Visit');
 
 let placeSquema = new mongoose.Schema({
   title: {
@@ -80,6 +81,10 @@ async function generateSlugAndContinue(count, next){
 }
 
 placeSquema.plugin(mongoosePaginate);
+
+placeSquema.virtual('visits').get(function(){
+  return Visit.find({'_place': this._id}).sort('_id');
+});
 
 let Place = mongoose.model('Place', placeSquema);
 
