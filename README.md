@@ -315,3 +315,13 @@ https://mongoosejs.com/docs/tutorials/virtuals.html
 
 ### Visitas de un usuario
 
+## Seguridad en servicios web
+
+### Modelo aplicaciones
+
+Considera que el servicio web de tu empresa va a ser consumido por una app de Android, una de iOS y una Single Page Application. Podrías crear un nuevo registro para el modelo Applications, para cada una de las 3 aplicaciones.
+
+Esto, eventualmente, te podría ayudar a identificar cuántas peticiones vienen de cada una de las aplicaciones. Además de que las necesidades para cada una son distintas, si bien para la Single Page App no usarías un secreto, para las otras sí.
+
+Esto es especialmente importante para servicios web que se dejan abiertos al público, como el de Twitter o Facebook, donde poder identificar cada app es crucial en caso de que requieras suspender alguna o limitar otra.
+
