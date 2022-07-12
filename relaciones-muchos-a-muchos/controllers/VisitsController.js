@@ -18,11 +18,15 @@ const find = async (req, res, next) => {
 
 const index = async (req, res) => {
   try {
-    const user = await User.findOne({'_id': req.auth.id});
-    //Usamos el virtual creado en el modelo user
-    const places = await user.favorites; 
-    //console.log(places);
-    res.json(places);
+    let promise = null;
+
+    if(req.place) promise = req.place.visits;
+    if(req.user) promise = Visit.forUser(req.auth.id, req.query.page || 1)
+
+    if(promise) {
+      const visits = await promise;
+      res.json(visits);
+    }
   } catch (error) {
     console.log(error);
     res.json(error);

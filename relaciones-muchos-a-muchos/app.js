@@ -14,6 +14,7 @@ const users = require('./routes/users');
 const sessions = require('./routes/sessions');
 const favorites = require('./routes/favorites');
 const visits = require('./routes/visits');
+const visitsPlaces = require('./routes/visitsPlaces');
 
 db.connect();
 
@@ -39,10 +40,12 @@ app.use(jwt({secret: secrets.jwt_secret, algorithms: ["HS256"]})
 //Routes
 app.get('/', (req, res) => res.json({ "message": "Hola tavo" }));
 app.use('/places', places);
+app.use('/places', visitPlaces);
 app.use('/users', users);
 app.use('/sessions', sessions);
 app.use('/favorites', favorites);
 app.use('/visits', visits);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
