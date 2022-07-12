@@ -325,3 +325,6 @@ Esto, eventualmente, te podría ayudar a identificar cuántas peticiones vienen 
 
 Esto es especialmente importante para servicios web que se dejan abiertos al público, como el de Twitter o Facebook, donde poder identificar cada app es crucial en caso de que requieras suspender alguna o limitar otra.
 
+### Asignar valores random a secret y applicationId
+
+npm install randomstring
