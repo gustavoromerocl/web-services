@@ -328,3 +328,5 @@ Esto es especialmente importante para servicios web que se dejan abiertos al pú
 ### Asignar valores random a secret y applicationId
 
 npm install randomstring
+
+### Crear aplicaciones

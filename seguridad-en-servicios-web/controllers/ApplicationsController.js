@@ -1,13 +1,13 @@
 const buildParams = require('./helpers').buildParams;
-const Visit = require('../models/Visit');
+const Application = require('../models/Application');
 
-const validParams = ['_place', 'reaction', 'observation'];
+const validParams = ['origins', 'name'];
 
 const find = async (req, res, next) => {
   try {
-    let visit = await Visit.findById(req.params.visit_id);
-    req.mainObj = visit;
-    req.visit = visit;
+    let application = await Application.findById(req.params.application_id);
+    req.mainObj = application;
+    req.application = application;
     next()
   } catch (error) {
     console.log(error)
@@ -17,18 +17,7 @@ const find = async (req, res, next) => {
 
 const index = async (req, res) => {
   try {
-    let promise = null;
-
-    //Visitas de un lugar
-    if(req.place) promise = req.place.visits;
-
-    //visitas de un usuario
-    if(req.auth) promise = Visit.forUser(req.auth.id, req.query.page || 1)
-
-    if(promise) {
-      const visits = await promise;
-      res.json(visits);
-    }
+    res.json({message: "Hola desde index"})
   } catch (error) {
     console.log(error);
     res.json(error);
@@ -38,12 +27,10 @@ const index = async (req, res) => {
 const create = async (req, res) => {
   try {
     let params = buildParams(validParams, req.body);
-    
-    params['_user'] = req.auth.id;
   
-    const visit = await Visit.create(params);
-    console.log(visit);
-    res.json(visit);
+    const application = await Application.create(params);
+    console.log(application);
+    res.json(application);
   } catch (error) {
     res.status(422).json({error});
   }
@@ -52,7 +39,7 @@ const create = async (req, res) => {
 
 const destroy = (req, res) => {
   try {
-    req.visit.remove();
+    req.application.remove();
     res.json({});
   } catch(error) {
     console.log(error)
