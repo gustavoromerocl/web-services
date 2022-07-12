@@ -20,8 +20,11 @@ const index = async (req, res) => {
   try {
     let promise = null;
 
+    //Visitas de un lugar
     if(req.place) promise = req.place.visits;
-    if(req.user) promise = Visit.forUser(req.auth.id, req.query.page || 1)
+
+    //visitas de un usuario
+    if(req.auth) promise = Visit.forUser(req.auth.id, req.query.page || 1)
 
     if(promise) {
       const visits = await promise;
