@@ -5,7 +5,7 @@ const validParams = ['origins', 'name'];
 
 const find = async (req, res, next) => {
   try {
-    let application = await Application.findById(req.params.application_id);
+    let application = await Application.findById(req.params.id);
     req.mainObj = application;
     req.application = application;
     next()

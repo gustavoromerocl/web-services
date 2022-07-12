@@ -330,3 +330,5 @@ Esto es especialmente importante para servicios web que se dejan abiertos al pú
 npm install randomstring
 
 ### Crear aplicaciones
+
+### Eliminar aplicaciones
