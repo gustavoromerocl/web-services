@@ -338,3 +338,7 @@ npm install randomstring
 Reutilizamos el middleware findUser en el controller de favoritos
 
 ### Proteger rutas con secretos
+
+### Preflight en CORs
+
+npm install express-unless
