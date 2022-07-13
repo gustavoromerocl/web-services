@@ -335,4 +335,6 @@ npm install randomstring
 
 ### Rutas exclusivas de administradores
 
-Reutlizamos el middleware findUser en el controller de favoritos
+Reutilizamos el middleware findUser en el controller de favoritos
+
+### Proteger rutas con secretos

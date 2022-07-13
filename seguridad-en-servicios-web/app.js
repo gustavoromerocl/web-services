@@ -17,6 +17,9 @@ const visits = require('./routes/visits');
 const visitsPlaces = require('./routes/visitsPlaces');
 const applications = require('./routes/applications');
 
+const findAppBySecret = require('./middlewares/findAppBysecret');
+const authApp = require('./middlewares/authApp');
+
 db.connect();
 
 let app = express();
@@ -29,6 +32,9 @@ código es la nueva configuración
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(findAppBySecret);
+app.use(authApp);
 
 //Recibe la firma para validar el token en cada petición
 app.use(jwt({secret: secrets.jwt_secret, algorithms: ["HS256"]})
