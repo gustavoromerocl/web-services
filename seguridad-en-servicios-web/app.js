@@ -20,6 +20,7 @@ const applications = require('./routes/applications');
 const findAppBySecret = require('./middlewares/findAppBysecret');
 const findAppByApplicationId = require('./middlewares/findAppByApplicationID');
 const authApp = require('./middlewares/authApp')();
+const allowCORs = require('./middlewares/allowCORs')();
 
 db.connect();
 
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(findAppBySecret);
 app.use(findAppByApplicationId);
 app.use(authApp.unless({method: 'OPTIONS'})); //Excluye el preflight de CORS
+app.use(allowCORs.unless({path: 'public'}))
 
 //Recibe la firma para validar el token en cada petición
 app.use(jwt({secret: secrets.jwt_secret, algorithms: ["HS256"]})
