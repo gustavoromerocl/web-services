@@ -332,3 +332,7 @@ npm install randomstring
 ### Crear aplicaciones
 
 ### Eliminar aplicaciones
+
+### Rutas exclusivas de administradores
+
+Reutlizamos el middleware findUser en el controller de favoritos

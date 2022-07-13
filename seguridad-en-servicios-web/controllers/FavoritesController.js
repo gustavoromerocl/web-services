@@ -17,9 +17,10 @@ const find = async (req, res, next) => {
 
 const index = async (req, res) => {
   try {
-    const user = await User.findOne({'_id': req.auth.id});
+    if(!req.fullUser) return res.json({});
+
     //Usamos el virtual creado en el modelo user
-    const places = await user.favorites; 
+    const places = await req.fullUser.favorites; 
     //console.log(places);
     res.json(places);
   } catch (error) {

@@ -1,13 +1,15 @@
 const express = require('express');
 let router = express.Router();
 
+const findUser = require('../middlewares/findUser');
 const authenticateOwner = require('../middlewares/authenticateOwner');
 const favoritesController = require('../controllers/FavoritesController');
 const { expressjwt: jwt } = require('express-jwt'); //podemos agregar jwt a una ruta en especifico, importando la libreria
 const secrets = require('../config/secrets');
 
+
 router.route('/')
-  .get(jwt({secret: secrets.jwt_secret, algorithms: ["HS256"]}), favoritesController.index)
+  .get(jwt({secret: secrets.jwt_secret, algorithms: ["HS256"]}), findUser, favoritesController.index)
   .post(favoritesController.create)
 
 router.route('/:id')
