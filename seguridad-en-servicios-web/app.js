@@ -18,7 +18,8 @@ const visitsPlaces = require('./routes/visitsPlaces');
 const applications = require('./routes/applications');
 
 const findAppBySecret = require('./middlewares/findAppBysecret');
-const authApp = require('./middlewares/authApp');
+const findAppByApplicationId = require('./middlewares/findAppByApplicationID');
+const authApp = require('./middlewares/authApp')();
 
 db.connect();
 
@@ -34,18 +35,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(findAppBySecret);
-app.use(authApp);
+app.use(findAppByApplicationId);
+app.use(authApp.unless({method: 'OPTIONS'})); //Excluye el preflight de CORS
 
 //Recibe la firma para validar el token en cada petición
 app.use(jwt({secret: secrets.jwt_secret, algorithms: ["HS256"]})
   .unless({ //express jwt nos provee del método unless para excluir la protección de rutas especificada
     path: ['/sessions', '/users'], //Excluye las uri indicadas
-    method: 'GET' //Excluye el verbo GET de la protección de todas las uris
+    method: ['GET', 'OPTIONS'] //Excluye el verbo GET de la protección de todas las uris
   }) 
 );
 
 //Routes
-app.get('/', (req, res) => res.json({ "message": "Hola tavo" }));
+//app.get('/', (req, res) => res.json({ "message": "Hola tavo" }));
 app.use('/places', places);
 app.use('/places', visitsPlaces);
 app.use('/users', users);
